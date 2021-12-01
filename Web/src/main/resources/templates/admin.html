@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/setup.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <title>Carrots</title>
+        
+    </head>
+    <body>
+        <header class="bg">
+            <nav class="nav-menu">
+                <div class="row">
+                    <a href="admin" class="logo">CARROTS - AD</a>
+                    <ul class="main-nav">
+                    
+                        <li><a href="admin" class="nav-color">warehouse</a></li>
+                        <li><a href="addproduct" class="nav-color">add products</a></li>
+                        <li><a href="enter" class="nav-color">enter coupon</a></li>
+                        <li><a href="delivery" class="nav-color">delivery note</a></li>
+                        <li><a href="liststaff" class="nav-color">list staff</a></li>
+                        <li><a href="/"><ion-icon name="LOGOUT"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="head">
+                <div class="row">
+                    <h3>"WAREHOUSE-TODAY"</h3>  
+                    
+                    
+                </div>
+                <div class="page-content">
+                
+                    <table class="table table-products">
+                        <thead>
+                            <tr class="text-center">
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Count</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            <tr th:each="listNS : ${listNS}">
+                                <td><img th:src="@{${listNS.image}}" class="img-fluid" /></td>
+                               	<td th:utext="${listNS.maNS}"></td>
+                				<td th:utext="${listNS.tenNS}"></td>
+               					<td th:utext="${listNS.soLuong}"></td>
+                				<td th:utext="${#numbers.formatCurrency(listNS.donGia)}"></td>
+                                <td th:utext="${listNS.moTa}"></td>
+                                <td><a th:href="@{editNS/{maNS}(maNS=${listNS.maNS})}"><button type="button" class="btn">
+                                    <span class="badge badge-light">EDIT</span></button></a></td>
+                                <td><a th:href="@{/deleteNS/{maNS}(maNS=${listNS.maNS})}"><button type="button" class="btn">
+                                    <span class="badge badge-light">DELETE</span></button></a></td>
+                                    
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>

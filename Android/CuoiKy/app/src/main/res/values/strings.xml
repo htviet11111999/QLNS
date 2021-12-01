@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CuoiKy</string>
+    <string name="btnThem">THÊM</string>
+    <string name="btnXoa">XÓA</string>
+    <string name="btnSua">SỬA</string>
+    <string name="btnLoad">TẢI LẠI</string>
+    <string name="btnThoat">THOÁT</string>
+    <string name="channel_name">myChannel</string>
+    <string name="channel_description">This is myChannel</string>
+</resources>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/setup.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <title>Carrots</title>
+    </head>
+    <body>
+        <header class="bg">
+            <nav class="nav-menu">
+                <div class="row">
+                    <a href="admin" class="logo">CARROTS</a>
+                    <ul class="main-nav">
+                        <li><a href="/admin">warehouse</a></li>
+                        <li><a href="/addproduct">add products</a></li>
+                        <li><a href="/enter">enter coupon</a></li>
+                        <li><a href="/delivery">delivery note</a></li>
+                        <li><a href="/liststaff">list staff</a></li>
+                        <li><a href="/"><ion-icon name="arrow-undo"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="content-wrapper">
+                <h3>"ADD DELIVERY-NOTE"</h3>
+                <div class="page-add">
+                    <form action="/insertXNS" class="form">
+                        <div class="row-add row-add-enter">
+                             <div class="form-group">
+                             <input type="text" id="tb" name ="thongbao" class="de-form-control" readonly>
+                                <label>Date <span>*</span></label>
+                                  <input type="date" id="dt" onchange="mydate1();" hidden/>
+								<input type="text" id="ndt" name="ngay"  onclick="mydate();" hidden />
+								<input type="button" Value="Date" onclick="mydate();" />
+								<script type="text/javascript">
+								function mydate()
+								{
+								 
+								document.getElementById("dt").hidden=false;
+								document.getElementById("ndt").hidden=true;
+								}
+								function mydate1()
+								{
+									var today = new Date();
+									
+								 d=new Date(document.getElementById("dt").value);
+								dt=d.getDate();
+								mn=d.getMonth();
+								mn++;
+								yy=d.getFullYear();
+								if(dt < today.getDate())
+									{
+									document.getElementById("tb").value = "Ngày không được nhỏ hơn ngày hiện tại !";
+									document.getElementById("submit").style.display = 'none';
+									}
+								else {
+									document.getElementById("tb").value = "Ngày hợp lệ !";
+									document.getElementById("submit").style.display = 'block';
+								}
+								document.getElementById("ndt").value=dt+"/"+mn+"/"+yy;
+								document.getElementById("ndt").hidden=false;
+								document.getElementById("dt").hidden=true;
+								}
+								</script>
+                             </div>
+                             <div class="form-group">
+                                 <label>ID-Staff <span>*</span></label>
+                                 <input type="input" class="form-control" name ="maNV"  th:value ="${nv.maNV}" readonly>
+                             </div>
+                             <div class="form-group">
+                                 <label>Name-Staff <span>*</span></label>
+                                 <input type="input" class="form-control" name ="tenNV"  th:value ="${nv.tenNV}" readonly>
+                             </div>
+                             <div class="add-pro">
+                                 <input id="submit" type="submit" value="Add">
+                                 <a href="/delivery" class="btn btn-full">Cancel</a>
+                             </div>
+                        </div>                            
+                    </form>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>

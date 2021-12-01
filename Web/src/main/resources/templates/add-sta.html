@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/setup.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <title>Carrots</title>
+    </head>
+    <body>
+        <header class="bg">
+            <nav class="nav-menu">
+                <div class="row">
+                    <a href="admin" class="logo">CARROTS</a>
+                    <ul class="main-nav">
+                        <li><a href="/admin">warehouse</a></li>
+                        <li><a href="/addproduct">add products</a></li>
+                        <li><a href="/enter">enter coupon</a></li>
+                        <li><a href="/delivery">delivery note</a></li>
+                        <li><a href="/liststaff">list staff</a></li>
+                        <li><a href="\"><ion-icon name="arrow-undo"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="content-wrapper">
+                <h3>"ADD STAFF"</h3>
+                <div class="page-edit">
+                    <form th:action="@{/nhanvien}" method="post">
+                        <div class="row-add">
+                            <div class="col span-1-of-2">
+                                <div class="form-group">
+                                    <label>Name <span>*</span></label>
+                                    <input type="text" class="form-control" name="tenNV" placeholder="" required/>
+                                </div>
+                            </div>
+                            <div class="col span-1-of-2">
+                                <div class="form-group">
+                                    <label>Address <span>*</span></label>
+                                    <input type="text" class="form-control" name="diaChi" placeholder="" required/>
+                                </div>
+                            </div>
+                            <div class="col span-1-of-2">
+                                <div class="form-group">
+                                    <label>Sexual <span>*</span></label>
+                                
+                            <input type="radio" name="gioiTinh" value="0" > Nam
+                            <input type="radio" name="gioiTinh" value="1"> Nữ
+                        			
+                                </div>
+                            </div>
+                            <div class="col span-2-of-2">
+                                <div class="add-pro">
+                                    <input type="submit" value="Add">
+                                     <a href="/liststaff" class="btn btn-full">Cancel</a>
+                                </div>
+                            </div>
+                        </div>                            
+                    </form>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>

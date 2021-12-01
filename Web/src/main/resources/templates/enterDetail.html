@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/setup.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+
+        <title>Carrots</title>
+    </head>
+    <body>
+        <header class="bg">
+            <nav class="nav-menu">
+                <div class="row">
+                    <a href="/admin" class="logo">CARROTS</a>
+                    <ul class="main-nav">
+                        <li><a href="/admin">warehouse</a></li>
+                        <li><a href="/addproduct">add products</a></li>
+                        <li><a href="/enter">enter coupon</a></li>
+                        <li><a href="/delivery">delivery note</a></li>
+                        <li><a href="/liststaff">list staff</a></li>
+                        <li><a href="/"><ion-icon name="arrow-undo"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="content-wrapper">
+               <h3>"COUPON-DETAIL"</h3>
+               <div class="col span-1-of-2">
+                   <div class="page-detail">
+                       <form action="/insertCTN" method="post">
+                           <div class="row-add">
+                               <div class="form-group">
+                                   <label> Name <span>*</span></label>
+                  					<select id="tenNS" name="tenNS" class="de-form-control" onchange="run()">
+                     					<option label="Chọn tên nông sản"></option>
+                       					<option th:each ="v : ${ns}" th:value ="${v.maNS}" th:text ="${v.tenNS}" ></option>
+                                   </select>
+                               </div>
+                               <div class="form-group">
+                                     <label> ID <span>*</span></label>
+                                   <input type="text" id="maNS" name ="maNS" class="de-form-control" readonly>
+                               </div>
+                           
+                               <div class="form-group">
+                                   <label>ID-In <span>*</span></label>
+                                   <input type="text" name="maN" readonly th:value ="${maN}" class="de-form-control">
+                               </div>
+                               <div class="form-group">
+                                  <label>Count <span>*</span></label>
+                                   <input type="text" name ="soLuong" class="de-form-control" required>
+                               </div>
+                               <div class="add-pro-detail">
+                                   <input type="submit" value="Add">
+                                   <a href="/enter" class="btn btn-full detail">Cancel</a>
+                               </div>
+                           </div>                            
+                       </form>
+                   </div>
+               </div>
+               <div class="col span-1-of-2">
+                   <div class="page-content">
+                       <table class="table table-products">
+                           <thead>
+                               <tr class="text-center">
+                                   <th>ID</th>
+                                   <th>Name</th>
+                                   <th>ID-In</th>
+                                   <th>Count</th>
+                                   <th colspan="1"></th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr th:each = "nns : ${listNNS}">
+				                <td th:utext = "${nns.maNS}"></td>
+				                <td th:utext = "${nns.tenNS}"></td>
+				                <td th:utext = "${nns.maN}"></td>
+				                <td th:utext = "${nns.soLuong}"></td>
+				                <td><a th:href="@{/deleteCTN/(maN = ${nns.maN},maNS = ${nns.maNS})}"><button type="button" class="btn">
+				                                    <span class="badge badge-light">Delete</span></button></a></td>
+				            </tr>
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+            </div>
+        </header> 
+        <script type="text/javascript">
+        function run(){
+        	document.getElementById("maNS").value = document.getElementById("tenNS").value;
+        }
+        </script>
+    </body>
+</html>

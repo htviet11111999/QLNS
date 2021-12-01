@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link rel="stylesheet" type="text/css" href="/vendors/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="/vendors/css/grid.css">
+        <link rel="stylesheet" type="text/css" href="/resources/css/setup.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+        <title>Carrots</title>
+    </head>
+    <body>
+        <header class="bg">
+            <nav class="nav-menu">
+                <div class="row">
+                    <a href="admin" class="logo">CARROTS</a>
+                    <ul class="main-nav">
+                        <li><a href="admin">warehouse</a></li>
+                        <li><a href="addproduct">add products</a></li>
+                        <li><a href="enter">enter coupon</a></li>
+                        <li><a href="delivery">delivery note</a></li>
+                        <li><a href="liststaff">list staff</a></li>
+                        <li><a href="\"><ion-icon name="arrow-undo"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="head">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <a href="add-sta" class="add"><h4><ion-icon name="person-add-outline"></ion-icon> Add-Staff</h4></a>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <h3>"LIST-STAFF"</h3>
+                    </div>
+                    <div class="col span-1-of-3">
+                        <a href="liststaff" class="re"><h4><ion-icon name="refresh-outline"></ion-icon> Reload</h4></a>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <table class="table table-products">
+                        <thead>
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Sexual</th>
+                                <th>Address</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each ="listNV : ${listNV}">
+                                <td  th:text ="${listNV.maNV}"></td>
+                				<td  th:utext = "${listNV.tenNV}"></td>
+                				<td  th:if = "${listNV.gioiTinh == 0}">Nam</td>
+                				<td  th:if = "${listNV.gioiTinh == 1}">Nữ</td>
+                				<td th:utext = "${listNV.diaChi}"></td>
+                                <td><a th:href="@{/deleteNV/{maNV}(maNV=${listNV.maNV})}"><button type="button" class="btn">
+                                    <span class="badge badge-light">Delete</span></button></a></td>
+               					 <td><a th:href="@{/editNV/{maNV}(maNV=${listNV.maNV})}"><button type="button" class="btn">
+                                    <span class="badge badge-light">Edit</span></button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </header>
+    </body>
+</html>
